@@ -2,12 +2,11 @@
 
 ## Objetivo
 ---
-Permitir a utilização de algorítimos independentes entre sí em um mesmo cliente, sendo intercambiávies durante o tempo de execução.
+Permite definir um mecanismo de assinatura para notificar vários objetos sobre quaisquer eventos que ocorram com o objeto que estão observando.
 
-Permite criar algorítimos de maneira flexível e reutilizável para serem utilizados por mais de um cliente.
 
 ## Funcionamento
 ---
-É criado uma interface (abstrata pura em C++) em uma classe base para encapsular a implementação dos algorítimps em classes derivadas. Os clientes irão conter a interface e não terão nenhum impacto quando o número de classes derivadas mudar e nem quando a implementação de uma classe derivada mudar.
+É criado uma interface para o objeto que iremos observar, chamado de **Subject/Publisher**, ele irá conter uma lista com os **Observers/Subscrivers** e irá controlar a inscrição e remoção destes Observers, também ficará responsável por notificar os Observers de todas as modificações que serão feitas no **Cliente** sendo observado.
 
 ![Observer UML](../../Imgs/Observer.png "Observer UML").
