@@ -1,10 +1,21 @@
 # Factory pattern
 
 ## Objetivo
-Permite definir um mecanismo de assinatura para notificar vários objetos sobre quaisquer eventos que ocorram com o objeto que estão observando.
+Fornecer uma interface para criar objetos em uma super classe, mas permitir que subclasses alterem o tipo de objetos que serão criados.
 
+Substituir chamadas diretas de construção de objeto por chamadas para um método da fábrica.
+
+É possível lidar com o problema de criar objetos sem precisar especificar a classe exata do objeto que será criado.
 
 ## Funcionamento
-É criado uma interface para o objeto que iremos observar, chamado de **Subject/Publisher**, ele irá conter uma lista com os **Observers/Subscribers** e irá controlar a inscrição e remoção destes Observers, também ficará responsável por notificar os Observers de todas as modificações que serão feitas no **Cliente** sendo observado.
+Criar uma interface para todos os objetos em comum que serão instanciados.
 
-![Observer UML](../../Imgs/Observer.png "Observer UML").
+Criar uma interface para a fábrica de objetos, com um método de criação que retorne a interface comum entre os objetos.
+
+Criar a fábrica onde será instanciado um objeto específico, retornar este objeto no método de criação herdado pela fábrica.
+
+Poderá ser criado infinitas fábricas para instanciar diferentes objetos seguindo esse mesmo padrão.
+
+Para criar um objeto basta instanciar a fábrica correspondente e utilizar o método de criação
+
+![Factory UML](../../Imgs/factory.png "Factory UML")
