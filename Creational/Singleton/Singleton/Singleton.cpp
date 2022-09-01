@@ -14,7 +14,7 @@ class Singleton
 
     void PrintValue()
     {
-      std::cout << Value();
+      std::cout << Value() << "\n";
     }
 
     std::string Value() const {
@@ -46,9 +46,12 @@ Singleton* Singleton::singleton = nullptr;  // Inicializando o Singleton para qu
 int main()
 {
   Singleton* singleton = Singleton::GetInstance("original");
-  //Singleton* singleton = Singleton::GetInstance("new");     Erro de build, não é possível instanciar um novo singleton
+  Singleton* singleton2 = Singleton::GetInstance("new");   //  Cria mas retorna a instância já criada, sem alterar o valor
+  //Singleton* singleton3 = new Singleton();  //  Erro, não é possível criar um novo singleton
 
-  singleton->PrintValue();
+                              //Output
+  singleton->PrintValue();    //Original
+  singleton2->PrintValue();   //Original
 
   return 0;
 }
