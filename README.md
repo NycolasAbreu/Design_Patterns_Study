@@ -12,6 +12,7 @@ Most of the study will be following the book "Dive Into Design Patterns" which c
 ### Creational
 
   - Factory
+  - Singleton
 
 ### Structural
 
