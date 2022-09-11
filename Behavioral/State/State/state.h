@@ -1,37 +1,29 @@
 #pragma once
 #include <iostream>
-#include "context.h"
+
+class Context;
 
 class State
 {
-  public:
-    virtual ~State() {}
+public:
+  virtual ~State() {}
 
-    void set_context(Context* context) {
-      context = context;
-    }
+  void SetContext(Context* newContext) {
+    context = newContext;
+  }
 
-    virtual void Lock() = 0;
-    virtual void Play() = 0;
-    virtual void Pause() = 0;
-    virtual void Next() = 0;
+  virtual void Lock() = 0;
+  virtual void Play() = 0;
+  virtual void Pause() = 0;
+  virtual void Next() = 0;
 
-  protected:
-    Context* context;
+protected:
+  Context* context;
 };
 
 class LockedState : public State {
   public:
-    void Lock() override {
-      if (context->IsPlaying()) {
-        context->StartSong();
-        context->TransitionTo(new PlayingState());
-      }
-      else {
-        context->TransitionTo(new PausedState());
-      }
-    }
-
+    void Lock() override;
     void Play() override {} //Locked
     void Pause() override {} //Locked
     void Next() override {} //Locked
@@ -39,39 +31,16 @@ class LockedState : public State {
 
 class PlayingState : public State {
   public:
-    void Lock() override {
-      context->TransitionTo(new LockedState());
-    }
-
-    void Play() override {
-      context->StopSong();
-      context->TransitionTo(new PausedState());
-    }
-
-    void Pause() override {
-      context->StopSong();
-      context->TransitionTo(new PausedState());
-    }
-
-    void Next() override {
-      context->NextSong();
-    }
+    void Lock() override;
+    void Play() override;
+    void Pause() override;
+    void Next() override;
 };
 
 class PausedState : public State {
   public:
-    void Lock() override {
-      context->TransitionTo(new LockedState());
-    }
-
-    void Play() override {
-      context->StartSong();
-      context->TransitionTo(new PlayingState());
-    }
-
+    void Lock() override;
+    void Play() override;
     void Pause() override {}
-
-    void Next() override {
-      context->NextSong();
-    }
+    void Next() override;
 };

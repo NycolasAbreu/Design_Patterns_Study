@@ -1,5 +1,7 @@
 #pragma once
-#include "state.h"
+#include <iostream>
+#include <typeinfo>
+class State;
 
 class Context {
   public:
@@ -13,28 +15,51 @@ class Context {
       delete state;
     }
 
-    void TransitionTo(State* state) {
-      std::cout << "Context: Transition to " << typeid(*state).name() << ".\n";
-      if (state != nullptr)
+    void TransitionTo(State* newState) {
+      std::cout << "Context: Transition to " << typeid(*newState).name() << ".\n";
+      if (state != nullptr) {
         delete state;
-      state = state;
-      state->set_context(this);
+      }
+      state = newState;
+      state->SetContext(this);
+    }
+
+    // State Handles
+    void StopSong() {
+      state->Pause();
+    }
+    void StartSong() {
+      state->Play();
+    }
+    void NextSong() {
+      state->Next();
+    }
+    void LockPlayer() {
+      state->Lock();
     }
 
     bool IsPlaying() {
       return true;
     }
 
-    void StopSong() {
-      std::cout << "Stopping the Song\n";
+    void PlayingSong() {
+      std::cout << "Playing Song\n";
     }
 
-    void StartSong() {
-      std::cout << "Starting the Song\n";
+    void PausingSong() {
+      std::cout << "Pausing Song\n";
     }
 
-    void NextSong() {
+    void LockingPlayer() {
+      std::cout << "Locking Player\n";
+    }
+
+    void NextSongInList() {
       std::cout << "Next Song\n";
+    }
+
+    void ActualState() {
+      std::cout << "State: " << typeid(*state).name() << ".\n";
     }
 
   private:
