@@ -16,4 +16,4 @@ Permite produzir diferentes tipos e representações de um objeto usando o mesmo
 
 - O resultado da construção deve ser obtido do Builder.
 
-![Builder UML](../../Imgs/builder_pattern.png.png "Builder UML")
+![Builder UML](../../Imgs/builder_pattern.png "Builder UML")
